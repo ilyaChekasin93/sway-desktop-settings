@@ -1,0 +1,47 @@
+# This is main Sway config
+
+# Configuration path
+set $config ~/.config/sway
+
+# Theme variables 
+include $config/theme
+
+# Global variables
+include $config/global
+
+# Subconfigurations
+include $config/sub/*
+
+include /etc/sway/config.d/*
+
+# Wallpaper
+output * bg ~/Изображения/bimo_screen.png fill
+
+# Apply monitors configurations
+exec_always kanshi
+
+# Nextclous
+exec_always nextcloud
+
+# Polkit authorisation for GUI apps
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Languages
+input type:keyboard {
+     xkb_layout us,ru
+     xkb_options grp:alt_shift_toggle
+}
+
+# Touchpad
+input type:touchpad {
+     dwt enabled
+     tap enabled
+     natural_scroll enabled
+}
+
+# Status bar
+bar {
+    swaybar_command waybar
+    position top
+    height 25
+}

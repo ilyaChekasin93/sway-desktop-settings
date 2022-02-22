@@ -1,0 +1,17 @@
+# Apps
+$bindsym $mod+g exec google-chrome-stable
+$bindsym $mod+t exec telegram-desktop
+
+# Network manager
+$bindsym $mod+n exec $term --class="float.nm" -e nmtui
+$bindsym $mod+h exec alacritty --class="float.htop" -e htop
+
+# Firefox profile without toolbars and dark-reader extentions
+set $firefox_without_toolbars_profile_path ~/profiles/firefox/forfloat9515
+
+# Calendar
+set $google_calendar_url https://calendar.google.com/calendar/u/0/r/month
+set $calendar firefox --name=float.firefox.calendar --profile $firefox_without_toolbars_profile_path --no-remote $google_calendar_url
+for_window [app_id="float.firefox.calendar" floating] resize set 70 ppt 80 ppt
+#set $calendar gnome-calendar
+#set $calendar $term_float khal interactive

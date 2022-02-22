@@ -1,0 +1,8 @@
+profile {
+	output eDP-1 position 1920,200
+	output * position 0,0
+}
+
+profile {
+	output eDP-1 position 0,0
+}

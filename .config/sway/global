@@ -1,0 +1,55 @@
+# Mod key
+set $mod Mod4
+
+# Add --to-code to bindsym
+set $bindsym bindsym --to-code
+
+# Add --to-code to unbindsym
+set $unbindsym unbindsym --to-code
+
+# For float windows
+for_window [app_id="float.*"] floating enable, border pixel 2, sticky enable
+for_window [app_id="blueberry"] floating enable, border pixel 2, sticky enable
+for_window [app_id="manjaro-settings-manager"] floating enable, border pixel 2, sticky enable
+for_window [app_id="blueman*"] floating enable, border pixel 2, sticky enable
+for_window [app_id="gnome-*"] floating enable, border pixel 2, sticky enable
+for_window [app_id="pamac-manager"] floating enable, border pixel 2, sticky enable
+for_window [app_id="webapp-manager"] floating enable, border pixel 2, sticky enable
+
+# Your preferred application launcher
+set $menu krunner
+
+# Scripts path
+set $scripts ~/scripts
+
+# Terminal emulator
+set $term alacritty
+set $term_float alacritty --class="float.term"
+
+# Key bindings
+    # Start a terminal
+    $bindsym $mod+Return exec $term
+    $bindsym $mod+Shift+Return exec $term_float
+
+    # Kill focused window
+    $bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    $bindsym $mod+d exec $menu
+    $bindsym $mod+Shift+p exec $clipboard
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    $bindsym $mod+Shift+c reload
+
+    # Toggle Waybar
+    $bindsym $mod+Shift+b exec pkill -SIGUSR1 waybar
+
+# pulseaudio command
+set $pulseaudio $term --class="float.pulsemixer" -e pulsemixer

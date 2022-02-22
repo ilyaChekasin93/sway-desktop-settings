@@ -1,0 +1,34 @@
+# Onscreen bar
+set $onscreen_bar bash $scripts/wob.sh "$accent-colorFF" "$background-colorFF"
+
+# Brightness control
+set $brightness_step bash -c 'echo $(( $(light -Mr) / 100 * 5 < 1 ? 1 : $(( $(light -Mr) / 100 * 5 )) ))'
+set $brightness_up light -r -A $($brightness_step) && $onscreen_bar $(light -G | cut -d'.' -f1)
+set $brightness_down light -r -U $($brightness_step) && $onscreen_bar $(light -G | cut -d'.' -f1)
+
+# Audio control
+set $sink_volume pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
+set $source_volume pactl get-source-volume @DEFAULT_SOURCE@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
+set $volume_down $onscreen_bar $(pactl set-sink-volume @DEFAULT_SINK@ -5% && $sink_volume)
+set $volume_up $onscreen_bar $(pactl set-sink-volume @DEFAULT_SINK@ +5% && $sink_volume)
+set $volume_mute $onscreen_bar $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | sed -En "/no/ s/.*/$($sink_volume)/p; /yes/ s/.*/0/p")
+set $mic_mute $onscreen_bar $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
+
+$bindsym XF86AudioRaiseVolume exec $volume_up
+$bindsym XF86AudioLowerVolume exec $volume_down
+$bindsym XF86AudioMute exec $volume_mute
+
+$bindsym XF86AudioMicMute exec $mic_mute
+
+$bindsym --locked XF86MonBrightnessUp exec $brightness_up
+$bindsym --locked XF86MonBrightnessDown exec $brightness_down
+
+$bindsym XF86AudioPlay exec playerctl play-pause
+$bindsym XF86AudioNext exec playerctl next
+$bindsym XF86AudioPrev exec playerctl previous
+
+$bindsym XF86Search exec $menu
+
+$bindsym XF86PowerOff exec $shutdown
+
+$bindsym XF86TouchpadToggle input type:touchpad events toggle enabled disabled
