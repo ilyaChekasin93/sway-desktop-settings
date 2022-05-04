@@ -20,7 +20,6 @@
     }
 }
 
-
 /* -----------------------------------------------------------------------------
  * Base styles
  * -------------------------------------------------------------------------- */
@@ -37,7 +36,8 @@
 
 /* The whole bar */
 #waybar {
-    background: @theme_bg_color;
+    /*background: @theme_bg_color;*/
+    background: #141a1b;
     color: @wm_icon_bg;
     font-size: 13px;
 }

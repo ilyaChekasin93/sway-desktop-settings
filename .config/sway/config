@@ -15,7 +15,8 @@ include $config/sub/*
 include /etc/sway/config.d/*
 
 # Wallpaper
-output * bg ~/Изображения/bimo_screen.png fill
+# output * bg ~/Изображения/bimo_screen.png fill
+output * bg ~/Изображения/rick_screen.png fill
 
 # Apply monitors configurations
 exec_always kanshi
@@ -45,3 +46,6 @@ bar {
     position top
     height 25
 }
+
+# workstyle start
+exec_always --no-startup-id workstyle &> /tmp/workstyle.log

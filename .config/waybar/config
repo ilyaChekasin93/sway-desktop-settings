@@ -9,7 +9,7 @@
     "height": 28,
     "position": "top",
 
-    "modules-left": ["custom/menu", "sway/workspaces", "custom/scratchpad"],
+    "modules-left": ["sway/workspaces", "custom/scratchpad"],
     "modules-center": ["custom/wf-recorder", "sway/mode"],
     "modules-right": [
         // informational

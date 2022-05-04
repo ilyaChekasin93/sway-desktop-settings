@@ -1,6 +1,10 @@
 # Apps
-$bindsym $mod+g exec google-chrome-stable
+$bindsym $mod+g exec google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland
 $bindsym $mod+t exec telegram-desktop
+$bindsym $mod+i exec GDK_SCALE=1 GDK_DPI_SCALE=0.5 DISPLAY=:0 _JAVA_AWT_WM_NONREPARENTING=1 ~/idea/bin/./idea.sh
+$bindsym $mod+k exec GDK_SCALE=1 GDK_DPI_SCALE=0.5 _JAVA_AWT_WM_NONREPARENTING=1 ~/offsetexplorer2/offsetexplorer
+$bindsym $mod+q exec slack
+$bindsym $mod+j exec GDK_SCALE=1 GDK_DPI_SCALE=0.5 _JAVA_AWT_WM_NONREPARENTING=1 jmeter
 
 # Network manager
 $bindsym $mod+n exec $term --class="float.nm" -e nmtui
